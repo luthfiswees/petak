@@ -13,8 +13,10 @@ app.get('/', (req, res) => {
     res.send("It's on. Send POST request to /send_image to use");
 });
 
-app.post('/send_image', upload.single('screenshot'), (req, res) => {
-    res.json(method.createImage(req.file, req.body.label, req.body.test));
+app.post('/send_image', upload.single('screenshot'), async (req, res) => {
+    const image = await method.createImage(req.file, req.body.label, req.body.test);
+    console.log(image);
+    res.json(image);
 });
 
 app.listen(appPort, () => console.log('Example app listening on port ' + appPort));

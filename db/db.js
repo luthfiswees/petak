@@ -27,11 +27,9 @@ var findImage = (name) => {
     }).findOne((error, image) => {
         if (error){
             console.log("Image not found : ", error);
-            //callback(true, null);
             return null;
         } else {
             console.log("Image found");
-            //callback(false, image);
             return image;
         }
     });
