@@ -143,6 +143,22 @@ async function deleteLabel(labelname) {
     await label.images.forEach(async (element) => {
         await db.deleteImageById(element);
     });
+    let tests = (await db.findAllTest());
+    console.log("Test where label is located : " + tests);
+    await tests.forEach(async (element) => {
+        console.log("Element : " + element);
+        if (element.labels){
+            let labelIndex = element.labels.indexOf(label._id);
+            console.log("Label index : " + labelIndex);
+            if (labelIndex > -1) {
+                await db.findTest(element.name).then((testObj) => {
+                    testObj.labels.splice(labelIndex, 1);
+                    console.log("Current " + testObj.name + " labels condition : " + testObj.labels);
+                    testObj.save();
+                });
+            }
+        }
+    });
     let successfull = await db.deleteLabel(labelname);
     return successfull;
 }
