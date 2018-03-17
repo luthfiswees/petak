@@ -19,4 +19,19 @@ app.post('/send_image', upload.single('screenshot'), async (req, res) => {
     res.json(image);
 });
 
+app.get('/tests', async (req, res) => {
+    const data = await method.getAllTest();
+    res.json(data);
+});
+
+app.get('/labels', async (req, res) => {
+    const data = await method.getAllLabelOnTest(req.query.testname);
+    res.json(data);
+});
+
+app.get('/images', async (req, res) => {
+    const data = await method.getAllImageOnLabel(req.query.labelname);
+    res.json(data);
+});
+
 app.listen(appPort, () => console.log('Example app listening on port ' + appPort));

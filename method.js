@@ -60,7 +60,7 @@ async function createImage(imageObj, labelName, testName) {
                     await compare.getDiff(imageObj.path, fetchedImage.imagePath);
                     return new Promise((resolve, reject) => resolve({
                         error: false,
-                        image: fetchedImage
+                        data: fetchedImage
                     }));
                 });
                 return imageResponse;
@@ -68,7 +68,7 @@ async function createImage(imageObj, labelName, testName) {
                 await compare.getDiff(imageObj.path, baselineImage.imagePath);
                 return new Promise((resolve, reject) => resolve({
                     error: false,
-                    image: baselineImage
+                    data: baselineImage
                 }));
             };
         })
@@ -76,6 +76,66 @@ async function createImage(imageObj, labelName, testName) {
             console.log(error);
             return {error: true, message: error.message};
         });
+}
+
+async function getAllTest() {
+    let tests = await db.findAllTest().then((value) => {
+        console.log(value);
+        if (value == null) {
+            return new Promise((resolve, reject) => resolve({
+                error: true,
+                message: "There are no test avalaible"
+            }));
+        } else {
+            return new Promise((resolve, reject) => resolve({
+                error: false,
+                data: value
+            }));
+        }
+    });
+    return tests;
+}
+
+async function getAllLabelOnTest(testname) {
+    let test = await db.findTest(testname)
+                .then((testObj) => {
+                    if (testObj === null) {
+                        return new Promise((resolve, reject) => resolve(null));
+                    } else {
+                        return new Promise((resolve, reject) => resolve(testObj));
+                    }
+                });
+    let labels = await test.labels.map(async (value) => {
+        return db.findLabelById(value);
+    });
+    let labelValues = Promise.all(labels).then((value) => {
+        return new Promise((resolve, reject) => resolve({
+            error: false,
+            data: value
+        }));
+    });
+    return labelValues;
+}
+
+async function getAllImageOnLabel(labelname) {
+    let label = await db.findLabel(labelname)
+                    .then((labelObj) => {
+                        if (labelObj === null) {
+                            return new Promise((resolve, reject) => resolve(null));
+                        } else {
+                            return new Promise((resolve, reject) => resolve(labelObj));
+                        }
+                    });
+    let images = await label.images.map(async (value) => {
+        return db.findImageById(value);
+    });
+    let imageValues = Promise.all(images).then((value) => {
+        return new Promise((resolve, reject) => resolve({
+            error: false,
+            data: value
+        }));
+    });
+    return imageValues;
 }
 
 function changeBaseline(labelName, imageName) {
@@ -95,6 +155,9 @@ function changeBaseline(labelName, imageName) {
 }
 
 module.exports = {
+    getAllTest,
+    getAllLabelOnTest,
+    getAllImageOnLabel,
     createImage,
     changeBaseline
 }

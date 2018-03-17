@@ -61,6 +61,18 @@ var createLabel = (name) => {
     });
 };
 
+var findLabelById = (id) => {
+    return new Promise((resolve, reject) => {
+        Label.findById(id, (error, label) => {
+            if (error) {
+                reject("Label not found. Details : " + error + "\n");
+            } else {
+                resolve(label);
+            }
+        });
+    })
+}
+
 var findLabel = (name) => {
     return new Promise((resolve, reject) => {
         Label.findOne({
@@ -103,6 +115,18 @@ var findTest = (name) => {
     });
 };
 
+var findAllTest = () => {
+    return new Promise((resolve, reject) => {
+        Test.find({}, (error, tests) => {
+            if (error){
+                resolve(null);
+            } else {
+                resolve(tests);
+            }
+        });
+    });
+}
+
 var updateBaselineImageOnLabel = async (name, baseline) => {
     return new Promise((resolve, reject) => {
         findLabel(name).then((label) => {
@@ -132,9 +156,7 @@ var addImageOnLabel = async (name, image) => {
                 reject("Label not found, there is no label to add image on");
             } else {
                 if (label.images){
-                    label.images = [image];
-                } else {
-                    label.images = label.images.push(image);
+                    label.images.push(image);
                 }
                 label.save().then((label) => {
                     try {
@@ -156,9 +178,7 @@ var addLabelOnTest = (name, label) => {
                 reject("Test not found, there is no test to attach label on");
             } else {
                 if (test.labels){
-                    test.labels = [label];
-                } else {
-                    test.labels = test.labels.push(label);
+                    test.labels.push(label);
                 }
                 test.save().then((test) => {
                     try {
@@ -179,7 +199,9 @@ module.exports = {
     findImage,
     findImageById,
     findLabel,
+    findLabelById,
     findTest,
+    findAllTest,
     updateBaselineImageOnLabel,
     addLabelOnTest,
     addImageOnLabel
