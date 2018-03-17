@@ -163,6 +163,26 @@ async function deleteLabel(labelname) {
     return successfull;
 }
 
+async function deleteTest(testname){
+    try {
+        let test = await db.findTest(testname);
+        await test.labels.forEach(async (label) => {
+            let labelObj = await db.findLabelById(label);
+            await deleteLabel(labelObj.name);
+        });
+        await db.deleteTest(testname);
+        return {
+            error: false,
+            message: "Successfully deleting test " + testname
+        }
+    } catch(e) {
+        return {
+            error: true,
+            message: e.message
+        }
+    }
+}
+
 function changeBaseline(labelName, imageName) {
     db.findImage(imageName, (error, image) => {
         if (!error) {
@@ -184,6 +204,7 @@ module.exports = {
     getAllLabelOnTest,
     getAllImageOnLabel,
     createImage,
+    deleteTest,
     deleteLabel,
     changeBaseline
 }

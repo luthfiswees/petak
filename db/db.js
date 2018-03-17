@@ -159,6 +159,23 @@ var findAllTest = () => {
     });
 }
 
+var deleteTest = (name) => {
+    return new Promise((resolve, reject) => {
+        Test.remove({
+            name: name
+        }, (error) => {
+            if (error){
+                reject("Failed to delete test " + name);
+            } else {
+                resolve({
+                    error: false,
+                    message: "Successfully delete test " + name
+                });
+            }
+        });
+    });
+}
+
 var updateBaselineImageOnLabel = async (name, baseline) => {
     return new Promise((resolve, reject) => {
         findLabel(name).then((label) => {
@@ -236,6 +253,7 @@ module.exports = {
     findAllTest,
     deleteImageById,
     deleteLabel,
+    deleteTest,
     updateBaselineImageOnLabel,
     addLabelOnTest,
     addImageOnLabel

@@ -39,4 +39,9 @@ app.delete('/label', async (req, res) => {
     res.json(data);
 });
 
+app.delete('/test', async (req, res) => {
+    const data = await method.deleteTest(req.query.testname);
+    res.json(data);
+});
+
 app.listen(appPort, () => console.log('Example app listening on port ' + appPort));
