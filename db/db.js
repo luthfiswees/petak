@@ -1,5 +1,6 @@
 const model  = require('./model');
 const isNull = require('util').isNull;
+const fs     = require("mz/fs");
 
 const Test  = model.Test;
 const Label = model.Label;
@@ -48,8 +49,20 @@ var findImageById = (id) => {
 }
 
 var deleteImageById = (id) => {
-    return new Promise((resolve, reject) => {
-        Image.remove({ _id: id}, (error) => {
+    return new Promise(async (resolve, reject) => {
+        await Image.findOne({_id: id}, async (error, image) => {
+            if (error) {
+                reject("Failed to fetch image path to delete image on fs. Details : " + error.message);
+            } else {
+                try {
+                    await fs.unlink(image.imagePath);
+                    await fs.unlink(image.imageDiffPath);
+                } catch(e) {
+                    reject("Failed to delete image on fs. Details : " + e.message);
+                }
+            }
+        });
+        await Image.remove({ _id: id}, (error) => {
             if (error) {
                 reject("Failed to remove image with id " + id);
             } else {
