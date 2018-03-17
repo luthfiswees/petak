@@ -28,7 +28,7 @@ async function getDiff(imagePath, baselinePath){
     );
 
     await fs.writeFile(imagePath + '_diff', data.getBuffer());
-    console.log("/////CLOSING CREATE IMAGE OPERATIONS/////\n");
+    console.log("\n/////CLOSING CREATE IMAGE OPERATIONS/////\n");
 }
 
 module.exports = {
