@@ -47,6 +47,21 @@ var findImageById = (id) => {
     })
 }
 
+var deleteImageById = (id) => {
+    return new Promise((resolve, reject) => {
+        Image.remove({ _id: id}, (error) => {
+            if (error) {
+                reject("Failed to remove image with id " + id);
+            } else {
+                resolve({
+                    error: false,
+                    message: "Successfully delete image " + id
+                });
+            }
+        });
+    });
+}
+
 var createLabel = (name) => {
     return new Promise((resolve, reject) => {
         Label.create({
@@ -86,6 +101,23 @@ var findLabel = (name) => {
         });
     });
 };
+
+var deleteLabel = (name) => {
+    return new Promise((resolve, reject) => {
+        Label.remove({
+            name: name
+        }, (error) => {
+            if (error){
+                reject("Failed to delete label " + name);
+            } else {
+                resolve({
+                    error: false,
+                    message: "Successfully delete label " + name
+                });
+            }
+        });
+    });
+}
 
 var createTest = (name) => {
     return new Promise((resolve, reject) => {
@@ -202,6 +234,8 @@ module.exports = {
     findLabelById,
     findTest,
     findAllTest,
+    deleteImageById,
+    deleteLabel,
     updateBaselineImageOnLabel,
     addLabelOnTest,
     addImageOnLabel

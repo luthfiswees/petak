@@ -138,6 +138,15 @@ async function getAllImageOnLabel(labelname) {
     return imageValues;
 }
 
+async function deleteLabel(labelname) {
+    let label = (await db.findLabel(labelname));
+    await label.images.forEach(async (element) => {
+        await db.deleteImageById(element);
+    });
+    let successfull = await db.deleteLabel(labelname);
+    return successfull;
+}
+
 function changeBaseline(labelName, imageName) {
     db.findImage(imageName, (error, image) => {
         if (!error) {
@@ -159,5 +168,6 @@ module.exports = {
     getAllLabelOnTest,
     getAllImageOnLabel,
     createImage,
+    deleteLabel,
     changeBaseline
 }

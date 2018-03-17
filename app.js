@@ -34,4 +34,9 @@ app.get('/images', async (req, res) => {
     res.json(data);
 });
 
+app.delete('/label', async (req, res) => {
+    const data = await method.deleteLabel(req.query.labelname);
+    res.json(data);
+});
+
 app.listen(appPort, () => console.log('Example app listening on port ' + appPort));
