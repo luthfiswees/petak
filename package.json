@@ -4,7 +4,7 @@
   "description": "Image comparator service",
   "main": "app.js",
   "scripts": {
-    "test": "ENV=TEST ./node_modules/.bin/mocha --exit"
+    "test": "ENV=TEST ./node_modules/.bin/mocha --exit --reporter nyan"
   },
   "author": "Luthfi Kurnia Putra",
   "license": "ISC",
