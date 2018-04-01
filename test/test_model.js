@@ -18,8 +18,6 @@ describe("Test", () => {
         await Test.remove({}, (err) => {
             if (err) {
                 console.log(err);
-            } else {
-                console.log("Successfully wiped Test model");
             }
         });
     });

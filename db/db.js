@@ -192,8 +192,6 @@ var deleteTest = (name) => {
 var updateBaselineImageOnLabel = async (name, baseline) => {
     return new Promise((resolve, reject) => {
         findLabel(name).then((label) => {
-            console.log("IMAGE FOR BASELINE : " + baseline + "\n");
-            console.log("LABEL TO ATTACH BASELINE : " + label + "\n");
             if (isNull(label)){
                 reject("Label not found, there is no label to attach baseline on");
             } else {
@@ -213,7 +211,6 @@ var updateBaselineImageOnLabel = async (name, baseline) => {
 var addImageOnLabel = async (name, image) => {
     return new Promise((resolve, reject) =>{
         findLabel(name).then((label) => {
-            console.log("IMAGE TO ADD TO LABEL : " + image + "\n");
             if (isNull(label)){
                 reject("Label not found, there is no label to add image on");
             } else {
@@ -235,7 +232,6 @@ var addImageOnLabel = async (name, image) => {
 var addLabelOnTest = (name, label) => {
     return new Promise((resolve, reject) => {
         findTest(name).then((test) => {
-            console.log("TEST TO ATTACH LABEL : " + test + "\n");
             if (isNull(test)){
                 reject("Test not found, there is no test to attach label on");
             } else {

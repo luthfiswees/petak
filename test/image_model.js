@@ -13,8 +13,6 @@ describe("Image", () => {
         await Image.remove({}, (err) => {
             if (err) {
                 console.log(err);
-            } else {
-                console.log("Successfully wiped Image model");
             }
         })
     });

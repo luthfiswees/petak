@@ -18,8 +18,6 @@ describe("Label", () => {
         await Label.remove({}, (error) => {
             if (error) {
                 console.log(error);
-            } else {
-                console.log("Successfully wiped Label model");
             }
         });
     });

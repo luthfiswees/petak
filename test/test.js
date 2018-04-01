@@ -4,6 +4,8 @@ const assert   = require('assert');
 const chai     = require('chai');
 const sinon    = require('sinon');
 const model    = require('../db/model');
+const db       = require('../db/db');
+const fs       = require("mz/fs");
 
 require('sinon-mongoose');
 
@@ -18,5 +20,7 @@ module.exports = {
     expect, 
     Test,
     Label,
-    Image
+    Image,
+    db,
+    fs
 }

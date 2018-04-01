@@ -1,4 +1,5 @@
 .env
 .DS_Store
+.nyc_output/
 uploads/
 node_modules/
