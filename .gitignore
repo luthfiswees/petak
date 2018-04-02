@@ -3,3 +3,4 @@
 .nyc_output/
 uploads/
 node_modules/
+coverage/
