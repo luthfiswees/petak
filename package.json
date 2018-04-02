@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "ENV=TEST ./node_modules/.bin/nyc --reporter=text-summary ./node_modules/.bin/mocha --exit --reporter nyan",
-    "coverage": "ENV=TEST ./node_modules/.bin/nyc npm test && ./node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls"
+    "coverage": "ENV=TEST npm test && ./node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls"
   },
   "author": "Luthfi Kurnia Putra",
   "license": "ISC",
