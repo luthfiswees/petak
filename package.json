@@ -4,8 +4,8 @@
   "description": "Image comparator service",
   "main": "app.js",
   "scripts": {
-    "test": "ENV=TEST ./node_modules/.bin/nyc --reporter=text-summary ./node_modules/.bin/mocha --exit --reporter nyan",
-    "coverage": "nyc --reporter=text-summary mocha --exit --reporter nyan && nyc report --reporter=text-lcov | coveralls"
+    "test": "ENV=TEST ./node_modules/.bin/nyc --reporter=text-summary ./node_modules/.bin/mocha --reporter nyan",
+    "coverage": "npm test && nyc report --reporter=text-lcov | coveralls"
   },
   "author": "Luthfi Kurnia Putra",
   "license": "ISC",
@@ -13,7 +13,7 @@
     "chai": "^4.1.2",
     "dotenv": "^5.0.1",
     "express": "^4.16.2",
-    "mocha": "^5.0.4",
+    "mocha": "3.5.3",
     "mongoose": "^5.0.9",
     "multer": "^1.3.0",
     "mz": "^2.7.0",
