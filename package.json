@@ -4,7 +4,7 @@
   "description": "Image comparator service",
   "main": "app.js",
   "scripts": {
-    "test": "ENV=TEST ./node_modules/.bin/nyc --reporter=text-summary ./node_modules/.bin/mocha --reporter nyan --exit",
+    "test": "ENV=TEST ./node_modules/.bin/nyc --reporter=text-summary ./node_modules/.bin/mocha --reporter=nyan --timeout=10000 --exit",
     "cover": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha",
     "coverage": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
