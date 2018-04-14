@@ -1,10 +1,11 @@
 # Petak
+[![Build Status](https://travis-ci.org/luthfiswees/petak.svg?branch=master)](https://travis-ci.org/luthfiswees/petak)
 Pixel comparison microservice for visual diff testing
 
-# Requirements
+## Requirements
 This repository needs `NodeJS` version 9 or above to work out
 
-# Installation
+## Installation
 Clone this repository, and do this command
 ```
 cd petak
@@ -17,5 +18,5 @@ Run the test to make sure it's okay with ...
 npm test
 ```
 
-# Improvements
+## Improvements
 This service will also include dashboard. Ongoing ...
