@@ -1,0 +1,4 @@
+--reporter nyan
+--timeout 5000
+--ui bdd
+--exit
