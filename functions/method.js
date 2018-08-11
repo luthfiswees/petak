@@ -1,4 +1,4 @@
-const db                = require('./db/db');
+const db                = require('../db/db');
 const compare           = require('./compare');
 const isNull            = require('util').isNull;
 const isNullOrUndefined = require('util').isNullOrUndefined;

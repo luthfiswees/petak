@@ -4,10 +4,7 @@ node_js:
 services:
   - mongodb
 env:
-  - PETAK_PORT=5000
-  - PETAK_DATABASE_NAME=petak
-  - PETAK_HOST=127.0.0.1
-  - PETAK_ENV=TEST
+  - PETAK_PORT=5000 PETAK_DATABASE_NAME=petak PETAK_HOST=127.0.0.1 PETAK_ENV=TEST
 install:
   - npm install
 before_script:

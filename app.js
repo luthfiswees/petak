@@ -5,8 +5,8 @@ const multer   = require('multer');
 const upload   = multer({dest: 'uploads'});
 const app      = express();
 
-const method   = require('./method');
-const compare  = require('./compare');
+const method   = require('functions/method');
+const compare  = require('functions/compare');
 const appPort  = parseInt(process.env.PETAK_PORT);
 
 app.get('/', (req, res) => {
